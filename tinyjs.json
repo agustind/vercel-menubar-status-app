@@ -1,0 +1,11 @@
+{
+  "name": "vercel-menubar-status",
+  "title": "Vercel Menubar Status App",
+  "size": "420x520",
+  "id": "io.github.agustind.vercel-menubar-status",
+  "version": "0.1.0",
+  "minTinyjsVersion": "0.41.0",
+  "icon": "icon.png",
+  "activation": "accessory",
+  "contextMenu": false
+}
