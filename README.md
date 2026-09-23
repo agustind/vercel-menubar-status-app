@@ -25,6 +25,15 @@ native webview, shipping as a ~6 MB `.app`.
 - **Adaptive polling.** Checks every 10s while something is building and every 60s otherwise,
   and refreshes after the Mac wakes from sleep.
 
+## Install
+
+1. Download the latest `.dmg` from [Releases](https://github.com/agustind/vercel-menubar-status-app/releases/latest).
+2. Open it and drag **Vercel Menubar Status App** into **Applications**.
+3. Launch it. A dot appears in the menu bar, and the sign-in window opens.
+
+The app is signed with a Developer ID and notarized by Apple, so it opens without Gatekeeper
+warnings. It requires an Apple Silicon Mac.
+
 ## Signing in
 
 The app authenticates with a Vercel **personal access token**:
@@ -68,6 +77,20 @@ This produces `dist/Vercel Menubar Status App.app` (ad-hoc signed). Drag it into
 
 The first time the built app runs, macOS asks for Keychain access, because it's a different
 binary from the dev build.
+
+### Signed and notarized release builds
+
+With a Developer ID Application certificate in your keychain and a `notarytool` profile
+(`xcrun notarytool store-credentials <profile> --apple-id … --team-id …`):
+
+```sh
+export TINYJS_SIGN_IDENTITY="Developer ID Application: <Name> (<TEAMID>)"
+export TINYJS_NOTARY_PROFILE=<profile>
+tinyjs build --dmg       # sign with the Developer ID
+tinyjs notarize --dmg    # submit to Apple, staple the ticket, rebuild the dmg
+```
+
+Passing these as environment variables keeps signing details out of `tinyjs.json`.
 
 ## Project layout
 
