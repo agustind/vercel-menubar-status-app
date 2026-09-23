@@ -58,6 +58,21 @@
   <div class="muted small" id="checked"></div>
 </section>
 
+<footer class="muted small">
+  <span id="version"></span> · <button class="link" id="aboutBtn">About</button>
+</footer>
+
+<div class="overlay" id="about" hidden>
+  <div class="aboutBox">
+    <svg class="logo big" viewBox="0 0 76 65" aria-hidden="true"><path d="M37.5 0L75 65H0z"/></svg>
+    <h2 class="aboutTitle">Vercel Menubar Status</h2>
+    <div class="muted" id="aboutVersion"></div>
+    <p>A menu bar traffic light for your Vercel deployments.</p>
+    <p>Made by <a href="#" class="ext" data-url="https://dondo.dev">dondo.dev</a></p>
+    <button id="aboutClose">Close</button>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

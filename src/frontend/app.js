@@ -7,6 +7,8 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
 const STATE_CLASS = { READY: 'green', ERROR: 'red', BUILDING: 'yellow', QUEUED: 'yellow', INITIALIZING: 'yellow' };
 
 function render(s) {
+  $('version').textContent = 'v' + s.version;
+  $('aboutVersion').textContent = 'Version ' + s.version;
   $('light').className = 'light ' + s.light;
   $('login').hidden = s.signedIn;
   $('main').hidden = !s.signedIn;
@@ -47,6 +49,19 @@ function render(s) {
 }
 
 tiny.api.on('state', render);
+
+const showAbout = (show) => { $('about').hidden = !show; };
+tiny.api.on('about', () => showAbout(true));
+$('aboutBtn').addEventListener('click', () => showAbout(true));
+$('aboutClose').addEventListener('click', () => showAbout(false));
+$('about').addEventListener('click', (e) => { if (e.target === $('about')) showAbout(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') showAbout(false); });
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a.ext');
+  if (!a) return;
+  e.preventDefault();
+  tiny.api.call('openUrl', { url: a.dataset.url });
+});
 
 $('createToken').addEventListener('click', (e) => {
   e.preventDefault();

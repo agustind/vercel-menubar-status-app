@@ -64,3 +64,18 @@ li:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
 .follows .link { font-size: 11px; margin-left: 4px; }
 input.watch { margin: 0; flex: none; }
 li.unwatched .dot, li.unwatched .proj { opacity: .45; }
+
+footer { margin-top: 14px; text-align: center; }
+footer .link { font-size: 11px; }
+.overlay {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(6px);
+}
+.overlay[hidden] { display: none; }
+.aboutBox {
+  width: 280px; padding: 24px 20px 18px; text-align: center; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--card); box-shadow: 0 10px 40px rgba(0,0,0,.25);
+}
+.aboutBox p { margin: 12px 0; }
+.aboutTitle { font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--fg); margin: 10px 0 2px; }
+.logo.big { width: 34px; height: 30px; }

@@ -201,6 +201,7 @@ function render() {
     menu.push({ id: 'settings', label: 'Settings…', key: ',' });
   }
   menu.push({ separator: true });
+  menu.push({ id: 'about', label: 'About Vercel Menubar Status' });
   menu.push({ id: 'quit', label: 'Quit', key: 'q' });
 
   app.tray.set({
@@ -214,6 +215,7 @@ function render() {
 
 function publicState() {
   return {
+    version: app.info.version,
     signedIn: !!token,
     user,
     teams,
@@ -326,6 +328,10 @@ export function onTray(id, a) {
   if (id === 'quit') return a.quit();
   if (id === 'refresh') return refresh();
   if (id === 'settings') return a.window('main').show();
+  if (id === 'about') {
+    a.window('main').show();
+    return a.push('about', null);
+  }
   if (id === 'dashboard') {
     const slug = teams.find((t) => t.id === settings.teamId)?.slug;
     return api.openUrl({ url: 'https://vercel.com/' + (slug ?? '') });
