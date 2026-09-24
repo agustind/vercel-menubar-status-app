@@ -65,6 +65,7 @@ li:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
 input.watch { margin: 0; flex: none; }
 li.unwatched .dot, li.unwatched .proj { opacity: .45; }
 
+#loginItemRow { flex-wrap: wrap; margin: 14px 0 0; }
 footer { margin-top: 14px; text-align: center; }
 footer .link { font-size: 11px; }
 .overlay {

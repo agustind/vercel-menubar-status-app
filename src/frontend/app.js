@@ -105,4 +105,20 @@ $('projects').addEventListener('click', async (e) => {
   if (url) tiny.api.call('openUrl', { url });
 });
 
+// Start at login. 'unsupported' under `tinyjs dev`, so the row stays hidden there.
+function renderLoginItem(status) {
+  $('loginItemRow').hidden = status === 'unsupported';
+  $('loginItem').checked = status === 'enabled' || status === 'requires-approval';
+  $('loginItemNote').textContent = status === 'requires-approval'
+    ? 'Allow it in System Settings → General → Login Items' : '';
+}
+$('loginItem').addEventListener('change', async () => {
+  try {
+    renderLoginItem(await tiny.app.launchAtLogin.set($('loginItem').checked));
+  } catch {
+    renderLoginItem(await tiny.app.launchAtLogin.get());
+  }
+});
+tiny.app.launchAtLogin.get().then(renderLoginItem, () => renderLoginItem('unsupported'));
+
 tiny.api.call('getState').then(render);

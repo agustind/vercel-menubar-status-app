@@ -4,6 +4,10 @@ A tiny macOS menu bar app that shows the status of your Vercel deployments as a
 traffic light. Built with [tinyjs](https://tinyjs.app): a JavaScript backend and a
 native webview, shipping as a ~6 MB `.app`.
 
+<p align="center">
+  <img src="docs/screenshot.png" alt="The menu bar dropdown listing projects with their latest deployment status" width="620">
+</p>
+
 | Light | Meaning |
 | ----- | ------- |
 | 🟢 | The latest deployment of every followed project is ready |
@@ -24,6 +28,7 @@ native webview, shipping as a ~6 MB `.app`.
   finishes or fails.
 - **Adaptive polling.** Checks every 10s while something is building and every 60s otherwise,
   and refreshes after the Mac wakes from sleep.
+- **Start at login.** Optionally launch the app when you log in.
 
 ## Install
 
@@ -72,8 +77,8 @@ tinyjs build
 ```
 
 This produces `dist/Vercel Menubar Status App.app` (ad-hoc signed). Drag it into
-`/Applications` and open it. To start it at login, add it under
-**System Settings → General → Login Items**.
+`/Applications` and open it. Tick **Start at login** in its window to launch it
+automatically when you log in.
 
 The first time the built app runs, macOS asks for Keychain access, because it's a different
 binary from the dev build.
